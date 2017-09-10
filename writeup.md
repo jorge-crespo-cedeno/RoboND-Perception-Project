@@ -39,6 +39,8 @@
 [image8]: ./misc_images/test2_2.png
 [image9]: ./misc_images/test3_1.png
 [image10]: ./misc_images/test3_2.png
+[image11]: ./misc_images/proj_1.png
+[image12]: ./misc_images/proj_2.png
 
 ---
 ### Writeup / README
@@ -58,7 +60,7 @@ Each object is separated using euclidean clustering, as shown in the following i
 
 ![alt text][image2]
 
-#### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
+#### 3. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
 Training the support vector machine, the following normalized confusion matrix was obtained,
 
 ![alt text][image3]
@@ -68,14 +70,6 @@ The result object recognition is shown as follows,
 ![alt text][image4]
 
 It can be noted that there are two disk_part labels, although the image only shows one. This is because the segmentation process groups the edge of the table as a cluster, as it is shown in the image of exercise 2. Hence, the object recognition process identifies the table edge as a disk_part. This issue is corrected in the project.
-
-
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
 
 
 ### Pick and Place Setup
@@ -107,7 +101,19 @@ These problems can be seen in the following images:
 ![alt text][image9]
 ![alt text][image10]
 
-Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
+Such problems origin in the clustering step.  In the following image, it can be seen that the glue is the object in white, but on the right there is a little pink colored object, which is part of the glue:
 
+![alt text][image11]
 
+In the next image, it can be appreciated that the book does not allow the camera to have a complete capture of the glue, but a divided one. This turns out in two separate portions of the glue:
+
+![alt text][image12]
+
+Hence, the support vector machine cannot identify the glue. The left portion is not complete to be identified as a glue, and the right portion is too small, and the output of the recognition algorithm is wrong.
+
+From this case, it can be noted that this algorithm works as long as the objects can be clearly seen by the RGBD camera. If they are behind other objects, and only a portion of them can be seen, then the recognition step fails.
+
+Another case where this perception fails is if the objects are touching each other. In that case, the euclidean clustering fails, since the criteria to associate a point in a group is distance. Objects that touch each other have their points close enough, so that the euclidean clustering step groups them as one object. A possible solution might be to group objects by more than one criteria, e.g., texture, color, euclidean distance, among others.
+
+Finally, to achieve these results, it was not enough a pass through filter in the z direction. Since there are two baskets, part of them was captured by the camera, and the clustering step grouped them as separate objects.  Then the support vector machine recognized them as objects that were used to train it. To sove this issue, a pass through filter in the y direction was added, to keep the object just on top of the table, and to remove the portion of the baskets that were captured by accident.
 
