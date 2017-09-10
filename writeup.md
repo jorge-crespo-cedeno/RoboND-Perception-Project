@@ -82,12 +82,16 @@ For the first world, the object recognition worked 100%, as it is shown in the f
 ![alt text][image5]
 ![alt text][image6]
 
+The output_1.yaml file can be found in the pr2_robot/scripts directory.
+
 ##### World 2
 In the second world, the perception recognized correctly 100% of the objects also, as it is shown in the following images:
 
 
 ![alt text][image7]
 ![alt text][image8]
+
+The output_2.yaml file can be found in the pr2_robot/scripts directory.
 
 ##### World 3
 In the third world, the support vector machine identified correctly 7 out 8 objects. The problem, is that the glue is behind the book, and this creates two problems:
@@ -117,3 +121,4 @@ Another case where this perception fails is if the objects are touching each oth
 
 Finally, to achieve these results, it was not enough a pass through filter in the z direction. Since there are two baskets, part of them was captured by the camera, and the clustering step grouped them as separate objects.  Then the support vector machine recognized them as objects that were used to train it. To sove this issue, a pass through filter in the y direction was added, to keep the object just on top of the table, and to remove the portion of the baskets that were captured by accident.
 
+The output_3.yaml file can be found in the pr2_robot/scripts directory.
