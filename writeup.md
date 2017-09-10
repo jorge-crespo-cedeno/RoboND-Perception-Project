@@ -33,6 +33,8 @@
 [image2]: ./misc_images/ex02-clusters.png
 [image3]: ./misc_images/ex03-normalized-confusion.png
 [image4]: ./misc_images/ex03-objects-recognized.png
+[image5]: ./misc_images/test1_1.png
+[image6]: ./misc_images/test1_2.png
 
 ---
 ### Writeup / README
@@ -61,10 +63,7 @@ The result object recognition is shown as follows,
 
 ![alt text][image4]
 
-
-![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
-
-
+It can be noted that there are two disk_part labels, although the image only shows one. This is because the segmentation process groups the edge of the table as a cluster, as it is shown in the image of exercise 2. Hence, the object recognition process identifies the table edge as a disk_part. This issue is corrected in the project.
 
 
 Here's | A | Snappy | Table
@@ -79,8 +78,11 @@ Here's | A | Snappy | Table
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
-And here's another image! 
-![demo-2](https://user-images.githubusercontent.com/20687560/28748286-9f65680e-7468-11e7-83dc-f1a32380b89c.png)
+##### World 1
+For the first world, the object recognition worked 100%, as it is shown in the following images:
+
+![alt text][image6]
+![alt text][image7]
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
