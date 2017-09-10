@@ -74,6 +74,8 @@ It can be noted that there are two disk_part labels, although the image only sho
 
 ### Pick and Place Setup
 
+The code of the project can be found in the pr2_robot/scripts/project.py
+
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
 ##### World 1
