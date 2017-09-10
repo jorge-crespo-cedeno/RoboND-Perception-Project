@@ -35,6 +35,10 @@
 [image4]: ./misc_images/ex03-objects-recognized.png
 [image5]: ./misc_images/test1_1.png
 [image6]: ./misc_images/test1_2.png
+[image7]: ./misc_images/test2_1.png
+[image8]: ./misc_images/test2_2.png
+[image9]: ./misc_images/test3_1.png
+[image10]: ./misc_images/test3_2.png
 
 ---
 ### Writeup / README
@@ -81,8 +85,27 @@ Here's | A | Snappy | Table
 ##### World 1
 For the first world, the object recognition worked 100%, as it is shown in the following images:
 
+![alt text][image5]
 ![alt text][image6]
+
+##### World 2
+In the second world, the perception recognized correctly 100% of the objects also, as it is shown in the following images:
+
+
 ![alt text][image7]
+![alt text][image8]
+
+##### World 3
+In the third world, the support vector machine identified correctly 7 out 8 objects. The problem, is that the glue is behind the book, and this creates two problems:
+
+1) The camera sees a the glue divided by the book, i.e., the camera captures a right portion of the glue and a left portion of it.
+
+2) The clustering function creates two clusters for the glue (the left and right portions), so the support vector machine fails. It identifies the left portion as a sticky_notes, and the right portion as biscuits.
+
+These problems can be seen in the following images:
+
+![alt text][image9]
+![alt text][image10]
 
 Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
 
